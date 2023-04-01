@@ -1,0 +1,88 @@
+.main-container{
+    width: 400px !important;
+    position: relative;
+    /* height: 400px !important; */
+}
+.container{
+    width: 400px !important;
+    padding: 10px !important;
+     /* position: absolute; */
+     
+    /* height: 100% !important; */
+}
+
+textarea {
+    height: 0;
+    min-height: 3em;
+    width: 400px;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    background: #fff;
+    padding: 4px 8px;
+    overflow: hidden;
+    -webkit-appearance: none;
+}
+
+.second-container{
+    width: 400px !important;
+     padding: 10px !important;
+}
+
+.meme-template-img{
+    width: 100% !important; 
+}
+
+.slide-container{
+    width: 840px !important;
+    /* transform: translateX(-400px); */
+}
+
+.alert{
+        position: relative;
+    margin: auto;
+    padding: 8px 48px;
+    width: 316px;
+    height: 64px;
+    background: #ebfffa;
+    border: 1px solid #aaf2e1;
+    border-radius: 4px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    color: #11a683;
+}
+
+.mm-text {
+    display: block;
+    padding: 2px;
+    width: 100%;
+    min-height: 44px;
+    line-height: 18px;
+    border-width: 2px;
+    border-style: solid;
+    resize: none;
+    height: 44px;
+}
+.mm-font-options {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50px;
+    height: 44px;
+    padding: 10px 0;
+    color: #333;
+    background: #ccc;
+}
+ .mm-box-edit { 
+   margin-top: 10px;
+    position: relative;
+}
+
+
+.mm-font-options-btn-wrap {
+    vertical-align: top;
+    display: inline-block;
+    margin: -4px -6px 0 6px;
+    position: relative;
+}
