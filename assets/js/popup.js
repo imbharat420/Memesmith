@@ -1215,7 +1215,7 @@ var templates = [
 
 
     async  function fetchVideoMeme(text){
-        const url = 'http://localhost:3000/scene?scene=' + text
+        const url = 'https://rich-puce-rooster-hat.cyclic.app/scene?scene=' + text
         console.log(url);
         try{
             let res =  await fetch(url);
