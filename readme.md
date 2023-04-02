@@ -1,4 +1,4 @@
-![header](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/jqu64j2er3osfv61adpy.png](https://user-images.githubusercontent.com/51924618/229355543-da0eaeea-4ee0-4351-8607-46c7686899f9.png)
+![header](https://user-images.githubusercontent.com/51924618/229355652-f2f43ae0-100d-421f-9627-74f7a07d20b1.png)
 
 # Memesmith ✨
 
