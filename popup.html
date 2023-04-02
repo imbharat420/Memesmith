@@ -25,8 +25,9 @@
             <!-- <img src="./assets/imgs/setting.svg" /> -->
           </div>
        </div>
-       
-        <div class="slide-container flex transition duration-150 ease-out">
+      
+       <div class="slide-container flex transition duration-150 ease-out">   
+          <!-- !IMAGE CONTAINER -->
           <div class="overflow-y-hidden" style="height:500px">
             <div class="container overflow-y-scroll" style="height: 100%;">
             <div>
@@ -39,7 +40,7 @@
                       </path>
                     </svg>
                   </div>
-                  <input type="text" id="search-input" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-100 dark:border-gray-200 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-00 dark:focus:border-blue-300 outline-2 outline-gray-300" placeholder="Search Meme Templates..." required="">
+                  <input type="text" id="search-input" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-100 dark:border-gray-200 dark:placeholder-gray-400  dark:focus:ring-blue-00 dark:focus:border-blue-300 outline-2 outline-gray-300" placeholder="Search Meme Templates..." required="">
                   <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3">
                     <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd">
@@ -55,12 +56,12 @@
                 </button>
               </div>
             </div>
-            <div class="meme-container">
-              <!-- <div class="-z-50 fixed -right-1/2 w-[60vh] h-[60vh] md:w-[60vw] md:h-[60vw] bg-[linear-gradient(90deg,_#FF9999_0%,_#CCFF99_25%,_#99FFFF_50%,_#9999FF_75%,_#FF99EE_100%)] opacity-60 md:opacity-100  animate-spin-slow blur-3xl"></div>     -->
-              <!-- <div class="-z-50 fixed -left-1/2 w-[60vh] h-[60vh] md:w-[60vw] md:h-[60vw] bg-[linear-gradient(0deg,_#FF9999_0%,_#CCFF99_25%,_#99FFFF_50%,_#9999FF_75%,_#FF99EE_100%)] opacity-60 md:opacity-100 animate-spin-slow blur-3xl"></div>     -->
-            </div>
+            <!-- !IMAGE CONTAINER -->
+            <div class="meme-container mb-20"></div>
             </div>
           </div>
+
+          <!-- !EDITOR CONTAINER -->
           <div class="overflow-y-hidden" style="height:500px">
             <div class="second-container overflow-y-scroll" style="height: 100%;">
             <div>
@@ -78,7 +79,7 @@
                 <!-- </div> -->
                 </div>
 
-               <div class="editor-textbox-container mt-5">
+               <div class="editor-textbox-container mb-20">
                   <div class="mm-box-edit">
                      <div class="mt-5 mm-text-wrap">
                       <textarea type="text" id="text0" class="mm-text" placeholder="Top Text" ></textarea>
@@ -107,12 +108,68 @@
                   <input type="hidden" id="meme-id" value="">
                  <div class="submit mt-5">
                   <button class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150" id="edit-button">Edit Now</button>
+                  <!-- <button class="inline-flex items-center px-4 py-2 font-semibold leading-6 text-sm shadow rounded-md text-white bg-indigo-500 hover:bg-indigo-400 transition ease-in-out duration-150" id="copy-to-clipboard">Copy Image</button> -->
                  </div>
                  
                </div>
             </div>
             </div>
           </div>
+
+          <!-- !VIDEO CONTAINER -->
+          <div class="overflow-y-hidden" style="height:500px">
+            <div class="container overflow-y-scroll" style="height: 100%;">
+            <div>
+              <div class="flex items-center">   
+                <label for="voice-search" class="sr-only">Search</label>
+                <div class="relative w-full">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd">
+                      </path>
+                    </svg>
+                  </div>
+                  <input type="text" id="video-search-input" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-100 dark:border-gray-200 dark:placeholder-gray-400  dark:focus:ring-blue-00 dark:focus:border-blue-300 outline-2 outline-gray-300" placeholder="Search Video Scenes..." required="">
+                  <button type="button" class="absolute inset-y-0 right-0 flex items-center pr-3">
+                    <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z" clip-rule="evenodd">
+                      </path>
+                    </svg>
+                  </button>
+                </div>
+                <button id="video-search-btn" class="inline-flex items-center py-2.5 px-3 ml-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-1 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  <svg aria-hidden="true" class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z">
+                    </path>
+                  </svg>Search
+                </button>
+              </div>
+            </div>
+            <div class="video-container mb-20" style="height: 100%;">
+              <div class="flex grow justify-center items-center" style="height: 100%;">
+                <span class="inline-flex justify-center flex-col">
+                  <img src="./assets/imgs/search.svg" class="video-image self-center" style="width: 40px;" />
+                  <p class="text-base">Search for scene you want to find</p>
+                </span>
+              </div>
+            </div>
+            </div>
+          </div>
+       </div>
+
+       <div class="bottom-navigation px-3 py-2 fixed bottom-0 bg-white w-full drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)]">
+         <div class="flex justify-around">
+            <div class="flex items-center justify-center">
+              <button class="button border border-2 rounded-lg" id="findContainerNavigation">
+                <img src="./assets/imgs/image.png" style="width: 40px;" />
+              </button>
+            </div>
+            <div class="flex items-center justify-center">
+              <button class="button  border-2 rounded-lg" id="videoContainerNavigation">
+                <img src="./assets/imgs/video.png"  style="width: 40px;"/>
+              </button>
+            </div>
+         </div>
        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
@@ -120,3 +177,8 @@
     <script src="./assets/js/popup.js"></script>
   </body>
 </html>
+
+
+<!--
+    
+-->

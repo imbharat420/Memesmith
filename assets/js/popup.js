@@ -5,22 +5,13 @@
     let  text0 = document.querySelector("#text0")
     let  text1 = document.querySelector("#text1")
 
-
-    function copyImageToClipboard(imageUrl) {
-        fetch(imageUrl)
-            .then(response => response.blob())
-            .then(blob => {
-            // Create a new clipboard item with the image Blob
-            const clipboardItem = new ClipboardItem({ 'image/png': blob });
-            
-            // Copy the clipboard item to the clipboard
-            navigator.clipboard.write([clipboardItem])
-                .then(() => console.log('Image copied to clipboard!'))
-                .catch(error => console.error('Error copying image to clipboard:', error));
-            })
-            .catch(error => console.error('Error fetching image:', error));
+    
+    function download(url, name){
+        let a = document.createElement("a");
+        a.setAttribute("href", url);
+        a.setAttribute("download", name);
+        a.click();
     }
-
 
 
     async  function fetchMeme(id,text0,text1){
@@ -1070,7 +1061,8 @@ var templates = [
             //meme-id
             let memeId = document.querySelector("#meme-id");
             memeId.value = template.id;
-     }
+    }
+
 
 
 
@@ -1110,39 +1102,200 @@ var templates = [
         if(type=="edit"){
             slideContainer.style.transform = "translateX(-400px)"; 
         }
-        
+
+        if(type=="video"){
+            slideContainer.style.transform = "translateX(-800px)"; 
+        }
         if(type=="find"){
             slideContainer.style.transform = "translateX(0)";
         }
     }
 
+
+    document.querySelector("#findContainerNavigation").addEventListener("click", function () {
+        translateContainer("find");
+    })
+
+    document.querySelector("#videoContainerNavigation").addEventListener("click", function () {
+        translateContainer("video");
+    })
  
     templates.forEach(function (template) {
       templateCreate(template)
     })
 
     let searchBtn = document.querySelector("#search-btn");
+     let searchInput = document.querySelector("#search-input");
+
+    searchInput.addEventListener("keyup", function (e) {
+        if(e.key=="Enter"){
+            searchBtn.click();
+        }
+    })
+
+    searchInput.addEventListener("input", function () {
+        if(searchInput.value==""){
+            container.innerHTML = "";
+            templates.forEach(function (template) {
+                templateCreate(template)
+            })
+        }
+    })
+
 
     searchBtn.addEventListener("click", function () {
-        let searchInput = document.querySelector("#search-input");
+       
         let searchValue = searchInput.value;
         console.log(searchValue);
 
-
-        let filteredTemplates = templates.filter(function (template) {
-            return template.name.toLowerCase().includes(searchValue.toLowerCase());
-        })
-
         
-        container.innerHTML = "";
 
+
+       let filteredTemplates = templates.filter(function (template) {
+            // Create a regular expression to match the search value
+            let regex = new RegExp(searchValue, "i"); // "i" flag makes the match case-insensitive
+
+            // Check if the search value matches the template name or alternate name
+            if (regex.test(template.name)) {
+                return true;
+            } else if (template.alternate && regex.test(template.alternate)) {
+                return true;
+            }
+
+            // Check if the search value matches any of the strings in the template.tags array
+            if (Array.isArray(template.tags)) {
+                for (let i = 0; i < template.tags.length; i++) {
+                if (regex.test(template.tags[i])) {
+                    return true;
+                }
+                }
+            }
+
+            // Return false if no match was found
+            return false;
+        });
+
+
+        if(filteredTemplates.length==0){
+             container.innerHTML = "";
+            container.innerHTML = `<div class="text-center text-2xl font-bold">No Meme Found</div>`;
+        }else{
+            container.innerHTML = "";
+            filteredTemplates.forEach(function (template) {
+                templateCreate(template)
+            })
+        }
+
+        console.log(filteredTemplates);
     })
 
 
     let backBtn = document.querySelector(".back-button");
-
+ 
     backBtn.addEventListener("click", function () {
         translateContainer("find");
+    })
+
+
+
+
+
+
+
+
+
+        
+    /**
+     * Video  Section
+     */
+
+
+
+    var videoContainer = document.querySelector(".video-container");
+
+
+    async  function fetchVideoMeme(text){
+        const url = 'http://localhost:3000/scene?scene=' + text
+        console.log(url);
+        try{
+            let res =  await fetch(url);
+            let data = await res.json();
+
+            if( data?.count != 0){
+                data.phrases.forEach(function(phrase){             
+                    videoTemplateCreate(phrase)
+                })
+            }else{
+               videoContainer.innerHTML = `<div class="text-center text-2xl font-bold">No Meme Found</div>`; 
+            }
+            console.log(data);
+        }catch(err){ 
+            console.log(err);
+            videoContainer.innerHTML = `<div class="text-center text-2xl font-bold">No Meme Found</div>`; 
+        }
+
+    }
+
+    
+    function videoTemplateCreate(template){
+        let meme = document.createElement("div");
+
+        meme.classList.add("meme","max-w-sm","rounded", "overflow-hidden", "shadow-lg","mx-1","my-5","bg-white");
+        meme.innerHTML = `<video src="${template["video-url"]}" controls class="meme-video"></video>`;
+
+        
+        let memeNameContainer = document.createElement("div");
+
+        memeNameContainer.classList.add("meme-name-container", "mx-3","mt-5", "mb-4");
+        memeNameContainer.innerHTML = `<div class="font-bold text-xl mb-2">${template.text}</div>`;
+
+        // let altContainer = document.createElement("div");
+        // altContainer.classList.add("flex" ,"flex-row","flex-wrap" ,"px-3" ,"pb-3");  
+        // altContainer.innerHTML +=  `
+        //         <span class="inline bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+        //             ${template["video-info"]["info"]}
+        //         </span>`
+        // memeNameContainer.appendChild(altContainer);
+
+
+
+        //download
+        let downloadBtn = document.createElement("button");
+        downloadBtn.classList.add("bg-blue-500", "w-full","hover:bg-blue-700", "text-white", "font-bold", "py-2", "px-4", "rounded", "float-right", "mb-3");
+        downloadBtn.innerHTML = "Download";
+        downloadBtn.addEventListener("click", function () {
+            download(template["video-url"], template.text);
+        })
+        memeNameContainer.appendChild(downloadBtn);
+
+        meme.appendChild(memeNameContainer);
+
+        videoContainer.appendChild(meme);
+    }
+    
+
+
+
+    /**
+     * !Search Button Event Listener
+     */
+    var videoSearchBtn = document.querySelector("#video-search-btn");
+    let videoSearchInput = document.querySelector("#video-search-input");
+    videoSearchInput.addEventListener("keyup", function (e) {
+        if(e.key=="Enter"){
+            videoSearchBtn.click();
+        }
+    })
+
+
+    videoSearchBtn.addEventListener("click", function () {
+        let searchValue = videoSearchInput.value;
+
+        if(searchValue == ""){
+            return;
+        }
+        videoContainer.innerHTML = "";
+        fetchVideoMeme(searchValue);
     })
 
 })();

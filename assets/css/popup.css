@@ -33,9 +33,11 @@ textarea {
 }
 
 .slide-container{
-    width: 840px !important;
+    width: 1260px !important;
     /* transform: translateX(-400px); */
 }
+
+
 
 .alert{
         position: relative;
